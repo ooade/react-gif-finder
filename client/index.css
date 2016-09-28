@@ -1,0 +1,35 @@
+.nav {
+  padding: 15px !important;
+  background-color: #eee;
+}
+
+.form {
+  margin-top: 40px;
+}
+
+a {
+  cursor: grab;
+}
+
+footer {
+  text-align: center;
+  margin: 50px;
+}
+
+.heart.icon {
+  color: red;
+}
+
+h5 {
+ text-align: center;
+}
+
+.event {
+  text-align: center;
+}
+
+.gif {
+  height: 150px;
+  width: 160px;
+}
+/*.event div:first*/
