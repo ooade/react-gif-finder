@@ -2,7 +2,6 @@
 
 # dependencies
 node_modules
-bower_components
 
 # production
 build
@@ -13,6 +12,3 @@ npm-debug*.log
 
 # Hide prod files
 public
-
-#Environment Variable
-.env

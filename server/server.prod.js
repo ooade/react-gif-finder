@@ -12,7 +12,7 @@ app.get('*', function(req, res) {
   res.sendFile(path.resolve(__dirname, '../public/index.html'));
 });
 
-app.listen(port, 'localhost', function(err) {
+app.listen(port, function(err) {
   if (err) {
     console.log(err);
     return;
