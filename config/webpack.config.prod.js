@@ -3,7 +3,6 @@ var autoprefixer = require('autoprefixer'); // Adds vendor to css rule a {displa
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var url = require('url');
 
 var homepagePath = require(path.resolve('package.json')).homepage;
@@ -13,14 +12,12 @@ if (!publicPath.endsWith('/')) {
 }
 
 module.exports = {
-  bail: true, //Don't attempt to continue if there are any errors.
-  devtool: 'cheap-source-map',
+  devtool: 'cheap-module-source-map',
   entry: [
     './client/'
   ],
   output: {
     path: path.resolve('public'),
-    pathinfo: true,
     filename: 'js/[name].[chunkhash:8].js',
     chunkFilename: 'js/[name].[chunkhash:8].js',
     publicPath
@@ -51,26 +48,6 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer!postcss')
       },
-      {
-        test: /\.json$/,
-        loader: 'json'
-      },
-      {
-        test: /\.(ico|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
-        exclude: /\/favicon.ico$/,
-        loader: 'file',
-        query: {
-          name: 'res/files/[name].[hash:8].[ext]'
-        }
-      },
-      {
-        test: /\/favicon.ico$/,
-        include: [path.resolve('client')],
-        loader: 'file',
-        query: {
-          name: 'favicon.ico?[hash:8]'
-        }
-      },
      {
        test: /\.html$/,
        loader: 'html',
@@ -97,13 +74,6 @@ module.exports = {
     ];
   },
   plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': "'production'"
-      }
-    }),
-    new CaseSensitivePathsPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
       template: path.resolve('index.html'),
@@ -120,6 +90,8 @@ module.exports = {
         minifyURLs: true
       }
     }),
+    new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
