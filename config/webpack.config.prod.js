@@ -3,7 +3,6 @@ var autoprefixer = require('autoprefixer'); // Adds vendor to css rule a {displa
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CompressionPlugin = require("compression-webpack-plugin");
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var url = require('url');
 
@@ -15,7 +14,7 @@ if (!publicPath.endsWith('/')) {
 
 module.exports = {
   bail: true, //Don't attempt to continue if there are any errors.
-  devtool: 'cheap-module-source-map',
+  devtool: 'cheap-source-map',
   entry: [
     './client/'
   ],
@@ -120,13 +119,6 @@ module.exports = {
         minifyCSS: true,
         minifyURLs: true
       }
-    }),
-    new CompressionPlugin({
-        asset: "[path].gz[query]",
-        algorithm: "gzip",
-        test: /\.js$|\.html$/,
-        threshold: 10240,
-        minRatio: 0.8
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
