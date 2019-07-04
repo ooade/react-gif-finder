@@ -15,7 +15,9 @@
     "test:watch": "npm run test -- --watch",
     "clean": "rimraf public",
     "start": "node server/server.dev.js",
-    "start-production": "node server/server.prod.js"
+    "start-production": "node server/server.prod.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "axios": "^0.14.0",
@@ -33,7 +35,8 @@
     "react-router": "^2.8.0",
     "react-router-redux": "^4.0.4",
     "redux": "^3.5.2",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "autoprefixer": "6.4.1",
@@ -80,5 +83,6 @@
   },
   "eslintConfig": {
     "extends": "./config/eslint.js"
-  }
+  },
+  "snyk": true
 }
