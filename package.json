@@ -18,7 +18,7 @@
     "start-production": "node server/server.prod.js"
   },
   "dependencies": {
-    "axios": "^0.14.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "fetch-gifs": "^0.1.3",
